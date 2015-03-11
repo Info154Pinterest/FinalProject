@@ -6,11 +6,11 @@ and open the template in the editor.
 -->
 <html>
 <head>
-    <title>Search Photos</title>
+    <title>Search The News</title>
 </head>
 <body>
     <form action="search.php" method="POST">
-        <input type="text" name="search" placeholder="Search Photos">
+        <input type="text" name="search" placeholder="Search The News">
         <br>
         <input type="submit" value="Submit">
     </form>

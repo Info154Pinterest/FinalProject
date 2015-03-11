@@ -68,7 +68,7 @@ $response = file_get_contents($url);
        
         
         ///----------------------------------------DISPLAY------------------------------------------
-        echo "<h2>".$query ."</h2>";
+        echo "<h2>'".$query ."'</h2>";
         $searchresults = "select a.img_url
                     from instagram.results a
                     where a.tag = '".$query."' and img_url is not null and trim(img_url) <> '' order by last_update desc;";
@@ -110,15 +110,6 @@ $response = file_get_contents($url);
         //a duplicate key error. Replace will delete the old row and replace it with a new row if we attempt to
         //insert row with a key that was already used
 
-        // echo $json->response->docs[1]->web_url."<br>";
-        // echo $json->response->docs[1]->snippet."<br>";
-        // echo $json->response->docs[1]->headline->main."<br>";
-        // echo $json->response->docs[1]->_id."<br>";
-        // for($x=0;$x<10;$x++){
-        //     echo $json->response->docs[$x]->web_url;
-        //     echo " +" . $x;
-
-        // }
 
         $insert = "REPLACE INTO nyt.results (search, id,web_url,headline,snippet) VALUES ";
 
@@ -154,7 +145,7 @@ $response = file_get_contents($url);
         }
      
        ///----------------------------------------DISPLAY------------------------------------------
-        echo "<h2>".$query ."</h2>";
+        echo "<h2>'".$query ."'</h2>";
         $searchresults = "select *
                     from nyt.results a
                     where a.search = '".$query."' and web_url is not null;";
@@ -162,8 +153,9 @@ $response = file_get_contents($url);
             die('There was an error running the query [' . $connect->error . ']');
         } else {
             while($row = $result->fetch_assoc()){
-                echo $row['id'] . '<br />' . $row['web_url'] . '<br />' . $row['headline'] . '<br />' . $row['snippet']. '<br />';
-                // echo $row['url'].";
+                echo "<article>";
+                echo "<h3>". $row['headline'] . "</h3>" . $row['snippet']. " <a href='" . $row['web_url'] . "'>Read More</a><br />" . '<br />';
+                echo "</article>";
 
             }
             $result->free();
